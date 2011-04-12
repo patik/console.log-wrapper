@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="All-in-one cross-browser console.log() wrapper">
+<meta name="author" content="Craig Patik">
+<title>All-in-one cross-browser console.log() wrapper</title>
+<script src="http://use.typekit.com/xlw2lhp.js"></script>
+<script>try { Typekit.load(); } catch (e) { }</script>
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <article>
+    <header><h1>All-in-one cross-browser console.log() wrapper demo</h1></header>
+    <section>
+   		<p>Open your console, then click one of the buttons below.</p>
+    	<p>These will write the major JavaScript variable types to the console (string, object, function, etc). Depending on your console, each type will appear either as a plain strings (IE, mostly) or as interactive, explorable items (Firebug, some others). Note that any limitations are imposed by the console itself, not the <code>log()</code> function being demoed here.</p>
+      <p>You can see the <code>log()</code> function in the <a href="view-source:http://patik.com/demos/consolelog/">source code</a> of this page. For a detailed explanation, see the <a href="http://patik.com/blog">blog post</a>.</p>
+      <p></p>
+      <ul id="command-list">
+      </ul>
+    </section>
+  </article>
+  
+  <script src="consolelog.js"></script>
+  
+  <!-- That's all there is to see, really. Everything below this comment is purely for the demo itself. -->
+  
+  <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+  <script src="script.js"></script>
+  
+  <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
+  <script>
+    var _gaq = [['_setAccount', 'UA-12082176-1'], ['_trackPageview']];
+    (function(d, t) {
+     var g = d.createElement(t),
+         s = d.getElementsByTagName(t)[0];
+     g.async = true;
+     g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     s.parentNode.insertBefore(g, s);
+    })(document, 'script');
+  </script> -->
+</body>
+</html>
