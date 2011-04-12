@@ -28,7 +28,43 @@
   <!-- That's all there is to see, really. Everything below this comment is purely for the demo itself. -->
   
   <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
-  <script src="script.js"></script>
+  <script>
+  var commands = {
+		'log-exec1': {
+			'method': function () { log( "Here's a string" , 2, {"three":false} ); }
+		},
+		'log-exec2': {
+			'method': function () { log( function () { alert("hello"); }, (2+2===5), new Date() ); }
+		},
+		'log-exec3': {
+			'method': function () { log( "Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch" ); }
+		}
+	};
+	
+	$(document).ready(function () {
+		for (var i in commands) {
+			var $li = $("<li>");
+			$("<input>", {
+				"type": "button",
+				"class": "log-exec",
+				"id": i,
+				"value": "Execute"
+			}).appendTo($li);
+			
+			$("<code>")
+				.html(commands[i].method.toString().replace(/^function\s\(\)\s\{\s/,'').replace(/\s\}$/,''))
+				.appendTo($li);
+			
+			$('#command-list').append($li);
+		}
+		
+		$('.log-exec').click(function () {
+			commands[this.id].method();
+		});
+	});
+	
+	// Array.prototype.slice.call(arguments)
+  </script>
   
   <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
   <script>
