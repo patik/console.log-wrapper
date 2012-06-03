@@ -2,7 +2,6 @@
 
 /* These styles are strictly for the demo and have nothing to do with the log() function */
 
-
 /* Reset borrowed from html5boilerplate.com (via Eric Meyer and HTML5Doctor), then trimmed */
 html, body, div, span, h1, p, pre, a, code, em, img, strong, ul, li,
 article, section { margin: 0; padding: 0; border: 0; font-size: 100%; vertical-align: baseline; background: transparent; }
@@ -19,19 +18,17 @@ html {
 
 body {
   line-height: 1.4em;
-	/* Sorry, I'm not familiar enough with standard Mac fonts, feel free to recommend some */
   font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", Calibri, "Helvetica Neue", Trebuchet, Helvetica, sans-serif;
   font-smooth: always;
   font-size: 1.2em;
-  background-color: #f9f9f9;
   color: #444;
   background-color: #efefef;
-  background-image: -moz-linear-gradient(top, #efefef 0%, #f9f9f9 100%); /* Firefox */
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#f9f9f9)); /* Webkit 2010 */
-	background-image: -webkit-linear-gradient(top, #efefef, #f9f9f9); /* Webkit 2011+ */
-	background-image: -ms-linear-gradient(top, #efefef, #f9f9f9); /* IE10 */
-  background-image: -o-linear-gradient(top, #efefef, #f9f9f9); /* Opera 11.10+ */
-	background-image: linear-gradient(top, #efefef, #f9f9f9);
+  background-image: -moz-linear-gradient(top, #efefef 0%, #f9f9f9 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#f9f9f9));
+  background-image: -webkit-linear-gradient(top, #efefef, #f9f9f9);
+  background-image: -ms-linear-gradient(top, #efefef, #f9f9f9);
+  background-image: -o-linear-gradient(top, #efefef, #f9f9f9);
+  background-image: linear-gradient(top, #efefef, #f9f9f9);
 }
 
 h1 {
@@ -52,13 +49,10 @@ article {
   padding: 1em;
   height: 100%;
   background-color: #fff;
-  -moz-box-shadow: 0 0 4px rgba(100,100,100,0.4);
-  -webkit-box-shadow: 0 0 4px rgba(100,100,100,0.4);
-  -o-box-shadow: 0 0 4px rgba(100,100,100,0.4);
   box-shadow: 0 0 4px rgba(100,100,100,0.4);
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box; 
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+  background-clip: padding-box;
 }
 
 p {
@@ -95,75 +89,62 @@ code {
 
 /* Button CSS shamelessly copied from http://www.webdesignerwall.com/demo/css-buttons.html because mine always looks a little off */
 #command-list input {
-	font: 1.2em/100% "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", Calibri, "Helvetica Neue", Trebuchet, Helvetica, sans-serif;
-	background-color: #0095cd; /* old browsers */
-	background-image: -moz-linear-gradient(top,  #00adee,  #0078a5); /* firefox */
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5)); /* Webkit 2010 */
-	background-image: -webkit-linear-gradient(top, #00adee, #0078a5); /* Webkit 2011+ */
-	background-image: -ms-linear-gradient(top, #00adee, #0078a5); /* IE10 */
-  background-image: -o-linear-gradient(top, #00adee, #0078a5); /* Opera 11.10+ */
-	background-image: linear-gradient(top, #00adee, #0078a5);
-	/* No IE7-9 filters for the background gradient because No ClearType == Fugly */
+  font: 14px/100% "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", Calibri, "Helvetica Neue", Trebuchet, Helvetica, sans-serif;
+  background-color: #0095cd; /* old browsers */
+  background-image: -moz-linear-gradient(top,  #00adee,  #0078a5);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+  background-image: -webkit-linear-gradient(top, #00adee, #0078a5);
+  background-image: -ms-linear-gradient(top, #00adee, #0078a5);
+  background-image: -o-linear-gradient(top, #00adee, #0078a5);
+  background-image: linear-gradient(top, #00adee, #0078a5);
+  /* No IE7-9 filters for the background gradient because No ClearType == Fugly */
   border: 1px solid #0076A3;
-	-moz-border-radius: 0.5em;
-	-webkit-border-radius: 0.5em;
-	-o-border-radius: 0.5em;
-	border-radius: 0.5em;
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box; 
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-	-o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   color: #D9EEF7;
-	cursor: pointer;
-	display: inline-block;
-	font: 14px/100% Arial,Helvetica,sans-serif;
-	margin: 0 2px;
-	outline: medium none;
-	padding: 0.5em 1em 0.55em;
-	text-align: center;
-	/*text-decoration: none;*/
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  -moz-transition: 0.2s all ease-out;
-  -webkit-transition: 0.2s all ease-out;
-  -o-transition: 0.2s all ease-out;
-  transition: 0.2s all ease-out;
-	vertical-align: baseline;
-	/* ie7 hacks for display:inline-block: */
-	*display: inline;
-	zoom: 1; 
+  cursor: pointer;
+  display: inline-block;
+  /* ie7 hacks for display:inline-block: */
+  *display: inline;
+  zoom: 1;
+  margin: 0 2px;
+  outline: medium none;
+  padding: 0.5em 1em 0.55em;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 0.2s all ease;
+     -moz-transition: 0.2s all ease;
+      -ms-transition: 0.2s all ease;
+       -o-transition: 0.2s all ease;
+          transition: 0.2s all ease;
+  vertical-align: baseline;
 }
 
 #command-list input:hover {
-	background-color: #007ead;
-	background-image: -moz-linear-gradient(top,  #0095cc,  #00678e);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
-	background-image: -webkit-linear-gradient(top, #0095cc, #00678e);
-	background-image: -ms-linear-gradient(top, #0095cc, #00678e);
+  background-color: #007ead;
+  background-image: -moz-linear-gradient(top,  #0095cc,  #00678e);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+  background-image: -webkit-linear-gradient(top, #0095cc, #00678e);
+  background-image: -ms-linear-gradient(top, #0095cc, #00678e);
   background-image: -o-linear-gradient(top, #0095cc, #00678e);
-	background-image: linear-gradient(top, #0095cc, #00678e);
-	/* Tighter, darker drop shadow for a sense of immediacy and to build anticipation */
-	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-	-o-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(top, #0095cc, #00678e);
+  /* Tighter, darker drop shadow for a sense of immediacy and to build anticipation */
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
 }
 
 #command-list input:active {
-	color: #80bed6;
-	background-color: #0078a5;
-	background-image: -moz-linear-gradient(top,  #0078a5,  #00adee);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
-	background-image: -webkit-linear-gradient(top, #0078a5, #00adee);
-	background-image: -ms-linear-gradient(top, #0078a5, #00adee);
+  color: #80bed6;
+  background-color: #0078a5;
+  background-image: -moz-linear-gradient(top,  #0078a5,  #00adee);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+  background-image: -webkit-linear-gradient(top, #0078a5, #00adee);
+  background-image: -ms-linear-gradient(top, #0078a5, #00adee);
   background-image: -o-linear-gradient(top, #0078a5, #00adee);
-	background-image: linear-gradient(top, #0078a5, #00adee);
-	position: relative;
-	top: 1px;
-	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-	-o-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(top, #0078a5, #00adee);
+  position: relative;
+  top: 1px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
 }
