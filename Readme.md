@@ -1,4 +1,4 @@
-# All-in-one console.log wrapper
+### All-in-one console.log wrapper ###
 
 Just drop consolelog.js in your project and start passing data to log(). Whichever browser you're testing in, you'll see your data in the console -- if the browser doesn't have a console, Firebug Lite will load. You can pass any variable type: strings, objects, arrays, functions, etc.
 
