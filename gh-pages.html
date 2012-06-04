@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="All-in-one, complete cross-browser console.log() wrapper">
+  <meta name="author" content="Craig Patik">
+  <title>Complete cross-browser console.log() wrapper</title>
+  <!-- Omit the next two lines if you fork this project since they won't work on any other domain -->
+  <script src="http://use.typekit.com/xlw2lhp.js"></script>
+  <script>try { Typekit.load(); } catch (e) { }</script>
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <article>
+    <h1>Complete cross-browser console.log() wrapper demo</h1>
+    <section>
+       <p>Open your console, then click one of the buttons below.</p>
+      <p>These examples will write the major JavaScript variable types to the console (string, object, function, etc). Depending on your console, each type will appear either as a plain strings (IE, mostly) or as interactive, explorable items (Firebug, some others). Note that any limitations are likely imposed by the console itself, not the <code>log()</code> function being demoed here.</p>
+      <p>You can see the <code>log()</code> function in the <a href="https://github.com/cpatik/console.log-wrapper/">Github repo</a> in <a href="https://github.com/cpatik/console.log-wrapper/blob/master/consolelog.js">consolelog.js</a>. For a detailed explanation, see the <a href="http://patik.com/blog/complete-cross-browser-console-log/">blog post</a>.</p>
+      <p>If you're lost, note that this has nothing to do with the mathematical log function. And if you're looking to comfort a grieving cylinder of wood, I <em>really</em> can't help you, sorry!</p>
+      <ul id="command-list">
+      </ul>
+    </section>
+  </article>
+
+  <!-- The log() function - what you came here for - is in this very file: -->
+  <script src="https://raw.github.com/cpatik/console.log-wrapper/master/consolelog.js"></script>
+
+  <!-- That's all there is to see, really. Everything below this comment is purely for the demo itself. -->
+
+  <script src="script.js"></script>
+  <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet -->
+  <script>
+    var _gaq = [['_setAccount', 'UA-12082176-1'], ['_trackPageview']];
+    (function(d, t) {
+     var g = d.createElement(t),
+         s = d.getElementsByTagName(t)[0];
+     g.async = true;
+     g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     s.parentNode.insertBefore(g, s);
+    })(document, 'script');
+  </script>
+</body>
+</html>
