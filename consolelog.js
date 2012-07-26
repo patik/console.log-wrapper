@@ -13,18 +13,7 @@ if (!window.log) {
     log.history.push(arguments);
     // Modern browsers
     if (typeof console != 'undefined' && typeof console.log == 'function') {
-
-      // Opera 11
-      if (window.opera) {
-        var i = 0;
-        while (i < arguments.length) {
-          console.log("Item " + (i+1) + ": " + arguments[i]);
-          i++;
-        }
-      }
-
-      // All other modern browsers
-      else if ((Array.prototype.slice.call(arguments)).length == 1 && typeof Array.prototype.slice.call(arguments)[0] == 'string') {
+      if ((Array.prototype.slice.call(arguments)).length == 1 && typeof Array.prototype.slice.call(arguments)[0] == 'string') {
         console.log( (Array.prototype.slice.call(arguments)).toString() );
       }
       else {
