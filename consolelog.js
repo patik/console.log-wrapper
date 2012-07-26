@@ -1,5 +1,5 @@
 // Tell IE9 to use its built-in console
-if (Function.prototype.bind && (typeof console === 'object' || typeof console === 'function') && typeof console.log == "object") {
+if (Function.prototype.bind && (typeof console === 'object' || typeof console === 'function') && typeof console.log === "object") {
   ["log","info","warn","error","assert","dir","clear","profile","profileEnd"]
     .forEach(function (method) {
       console[method] = this.call(console[method], console);
@@ -11,30 +11,20 @@ if (!window.log) {
   window.log = function () {
     log.history = log.history || [];  // store logs to an array for reference
     log.history.push(arguments);
+
     // Modern browsers
     if (typeof console != 'undefined' && typeof console.log == 'function') {
-
-      // Opera 11
-      if (window.opera) {
-        var i = 0;
-        while (i < arguments.length) {
-          console.log("Item " + (i+1) + ": " + arguments[i]);
-          i++;
-        }
-      }
-
-      // All other modern browsers
-      else if ((Array.prototype.slice.call(arguments)).length == 1 && typeof Array.prototype.slice.call(arguments)[0] == 'string') {
+      // Single argument, which is a string
+      if ((Array.prototype.slice.call(arguments)).length === 1 && typeof Array.prototype.slice.call(arguments)[0] === 'string') {
         console.log( (Array.prototype.slice.call(arguments)).toString() );
       }
       else {
         console.log( Array.prototype.slice.call(arguments) );
       }
-
     }
 
     // IE8
-    else if (!Function.prototype.bind && typeof console != 'undefined' && typeof console.log == 'object') {
+    else if (!Function.prototype.bind && typeof console !== 'undefined' && typeof console.log === 'object') {
       Function.prototype.call.call(console.log, console, Array.prototype.slice.call(arguments));
     }
 
