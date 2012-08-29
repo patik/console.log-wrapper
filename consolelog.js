@@ -30,6 +30,7 @@ if (!window.log) {
 
     // IE7 and lower, and other old browsers
     else {
+	  var args = arguments;
       // Inject Firebug lite
       if (!document.getElementById('firebug-lite')) {
         // Include the script
@@ -41,11 +42,11 @@ if (!window.log) {
         // If you want to expand the console window by default, uncomment this line
         //document.getElementsByTagName('HTML')[0].setAttribute('debug','true');
         document.getElementsByTagName('HEAD')[0].appendChild(script);
-        setTimeout(function () { log( Array.prototype.slice.call(arguments) ); }, 2000);
+        setTimeout(function () { window.log.apply(window, args); }, 2000);
       }
       else {
         // FBL was included but it hasn't finished loading yet, so try again momentarily
-        setTimeout(function () { log( Array.prototype.slice.call(arguments) ); }, 500);
+        setTimeout(function () { window.log.apply(window, args); }, 500);
       }
     }
   };
