@@ -6,7 +6,11 @@ Just drop consolelog.js in your project and start passing data to `log()`. Which
 
 This is an optional plugin to provide help information about the data that is being logged, especially in IE and older browsers. Just include consolelog.detailprint.js along with consolelog.js.
 
-Firebug, WebKit's Developer Tools, and Opera's Dragonfly print useful, interactive items to the console:
+Firebug, WebKit's Developer Tools, and Opera's Dragonfly print useful, interactive items to the console. For example:
+
+    log( "Here's a string" , 3.14, {"alpha": 5, "bravo": false}, document.getElementById('charlie'), new Date() );
+
+Results in:
 
 ![Firebug running in Firefox](https://raw.github.com/cpatik/console.log-wrapper/master/demo/firebug.png)
 
