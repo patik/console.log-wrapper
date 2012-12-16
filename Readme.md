@@ -8,17 +8,17 @@ This is an optional plugin to provide help information about the data that is be
 
 Firebug, WebKit's Developer Tools, and Opera's Dragonfly print useful, interactive items to the console:
 
-![Firebug running in Firefox](demo/consolelog.firebug.png)
+![Firebug running in Firefox](https://raw.github.com/cpatik/console.log-wrapper/master/demo/consolelog.firebug.png)
 
 Some browsers that have a primitive console &mdash; ones that does not expand arrays, links DOM elements to the source code, prints objects as "[object Object]" rather than listing their properties, etc.
 
-![IE8 without detailed print](demo/ie8-without-detail-print.png)
+![IE8 without detailed print](https://raw.github.com/cpatik/console.log-wrapper/master/demo/ie8-without-detail-print.png)
 
 Some cannot accept multiple arguments to a single `console.log` call. This includes IE 7/8/9/10, iOS 5 and older, and Opera 11 and older, among others.
 
 Using the `detailPrint` companion plugin, special objects are presented in a more readable manner.
 
-![IE8 with detailed print](demo/ie8-with-detail-print.png)
+![IE8 with detailed print](https://raw.github.com/cpatik/console.log-wrapper/master/demo/ie8-with-detail-print.png)
 
 ## Demo
 
