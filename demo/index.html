@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Complete cross-browser console.log() wrapper</title>
+  <meta name="description" content="console.log() polyfill">
+  <meta name="author" content="Craig Patik">
+  <link rel="canonical" href="http://patik.com/code/console-log-polyfill">
+  <link href="demo.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="span12">
+      <h1>Complete cross-browser console.log() wrapper demo</h1>
+      <p>Open your console, then click one of the buttons below.</p>
+      <p>These examples will write the major JavaScript variable types to the console (string, object, function, etc). Depending on your console, each type will appear either as a plain strings (IE, mostly) or as interactive, explorable items (Firebug, some others). Note that any limitations are likely imposed by the console itself, not the <code>log()</code> function being demoed here.</p>
+      <p>You can see the <code>log()</code> function in <a href="consolelog.js">consolelog.js</a>. For a detailed explanation, see the <a href="http://patik.com/blog/complete-cross-browser-console-log/">blog post</a>.</p>
+      <p>If you're lost, note that this has nothing to do with the mathematical log function. And if you're looking to comfort a grieving cylinder of wood, I <em>really</em> can't help you, sorry!</p>
+    </div>
+    <div class="span12">
+      <table id="command-list" class="table">
+        <thead>
+          <tr>
+            <th colspan="2">Command</th>
+            <th>Arguments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="button" class="btn btn-success" data-method="log" data-command="a" value="log"></td>
+            <td>
+              <input type="button" class="btn btn-success" data-method="console" data-command="a" value="console.log"></td>
+            <td>
+              <pre><code>"Here's a string", 3.14, {"alpha": 5, "bravo": false}, document.getElementById("charlie"), new Date()</code></pre>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="button" class="btn btn-success" data-method="log" data-command="b" value="log"></td>
+            <td>
+              <input type="button" class="btn btn-success" data-method="console" data-command="b" value="console.log"></td>
+            <td>
+              <pre><code>function () { alert("hello"); }, (2+2===5), [1, "2", 3, 4, "5"]</code></pre>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="button" class="btn btn-success" data-method="log" data-command="c" value="log"></td>
+            <td>
+              <input type="button" class="btn btn-success" data-method="console" data-command="c" value="console.log"></td>
+            <td>
+              <pre><code>"Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"</code></pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="charlie" class="delta echo">This is just for the demo</div>
+  <script src="../consolelog.js"></script>
+  <script src="../consolelog.detailprint.js"></script>
+  <script src="demo.js"></script>
+</body>
+</html>
