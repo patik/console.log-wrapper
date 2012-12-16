@@ -17,7 +17,7 @@ window.log.needDetailPrint = function () {
   else if (window.opera) {
     uaCheck = /Version\/(\d+)\.\d+/;
     if (uaCheck.test(ua)) {
-      if (parseInt(uaCheck.exec(ua)[1], 10) >= 12) {
+      if (parseInt(uaCheck.exec(ua)[1], 10) <= 11) {
         return true;
       }
     }
