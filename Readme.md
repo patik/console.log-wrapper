@@ -8,7 +8,9 @@ This is an optional plugin to provide help information about the data that is be
 
 Firebug, WebKit's Developer Tools, and Opera's Dragonfly print useful, interactive items to the console. For example:
 
-    log( "Here's a string" , 3.14, {"alpha": 5, "bravo": false}, document.getElementById('charlie'), new Date() );
+````js
+console.log( "Here's a string" , 3.14, {"alpha": 5, "bravo": false}, document.getElementById('charlie'), new Date() );
+````
 
 Results in:
 
