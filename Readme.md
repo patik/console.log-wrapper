@@ -8,7 +8,7 @@ This is an optional plugin to provide help information about the data that is be
 
 Firebug, WebKit's Developer Tools, and Opera's Dragonfly print useful, interactive items to the console:
 
-![Firebug running in Firefox](https://raw.github.com/cpatik/console.log-wrapper/master/demo/consolelog.firebug.png)
+![Firebug running in Firefox](https://raw.github.com/cpatik/console.log-wrapper/master/demo/firebug.png)
 
 Some browsers that have a primitive console &mdash; ones that does not expand arrays, links DOM elements to the source code, prints objects as "[object Object]" rather than listing their properties, etc.
 
