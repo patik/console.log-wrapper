@@ -4,19 +4,24 @@ Just drop consolelog.js in your project and start passing data to `log()`. Which
 
 ## Detailed print
 
-This is an optional plugin to provide help information about the data that is being logged, especially in IE and older browsers. Just include consolelog.detailprint.js along with consolelog.js.
+This is an optional plugin to provide help information about the data that is being logged, especially in IE and older browsers. Just include [consolelog.detailprint.js](https://github.com/cpatik/console.log-wrapper/blob/master/consolelog.detailprint.js) along with [consolelog.js](https://github.com/cpatik/console.log-wrapper/blob/master/consolelog.js).
 
 Firebug, WebKit's Developer Tools, and Opera's Dragonfly print useful, interactive items to the console. For example:
 
 ````js
-console.log( "Here's a string" , 3.14, {"alpha": 5, "bravo": false}, document.getElementById('charlie'), new Date() );
+console.log( "Here's a string",
+             3.14,
+             {"alpha": 5, "bravo": false},
+             document.getElementById('charlie'),
+             new Date()
+           );
 ````
 
 Results in:
 
 ![Firebug running in Firefox](https://raw.github.com/cpatik/console.log-wrapper/master/demo/firebug.png)
 
-Some browsers that have a primitive console &mdash; ones that does not expand arrays, links DOM elements to the source code, prints objects as "[object Object]" rather than listing their properties, etc.
+Some browsers that have a primitive console &mdash; ones that does not expand arrays, links DOM elements to the source code, prints objects as `[object Object]` rather than listing their properties, etc.
 
 ![IE8 without detailed print](https://raw.github.com/cpatik/console.log-wrapper/master/demo/ie8-without-detail-print.png)
 
