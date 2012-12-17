@@ -29,12 +29,12 @@
           <tr>
             <td><input type="button" class="btn btn-primary" data-method="log" data-command="a" value="log"></td>
             <td><input type="button" class="btn" data-method="console" data-command="a" value="console.log"></td>
-            <td><pre><code>"Here's a string", 3.14, {"alpha": 5, "bravo": false}, document.getElementById("charlie"), new Date()</code></pre></td>
+            <td><pre><code><span class="c-str">"Here's a string"</span>, <span class="c-num">3.14</span>, {<span class="c-str">"alpha"</span>: <span class="c-num">5</span>, <span class="c-str">"bravo"</span>: <span class="c-key">false</span>}, <span class="c-spec">document</span>.getElementById(<span class="c-str">"charlie"</span>), <span class="c-key">new</span> <span class="c-spec">Date()</span></code></pre></td>
           </tr>
           <tr>
             <td><input type="button" class="btn btn-primary" data-method="log" data-command="b" value="log"></td>
             <td><input type="button" class="btn" data-method="console" data-command="b" value="console.log"></td>
-            <td><pre><code>function () { alert("hello"); }, (2+2===5), [1, "2", 3, 4, "5"]</code></pre></td>
+            <td><pre><code><span class="c-key">function</span> () { alert(<span class="c-str">"hello"</span>); }, (<span class="c-num">2</span>+<span class="c-num">2</span>===<span class="c-num">5</span>), [<span class="c-num">1</span>, <span class="c-str">"2"</span>, <span class="c-num">3</span>, <span class="c-num">4</span>, <span class="c-str">"5"</span>]</code></pre></td>
           </tr>
           <tr>
             <td><input type="button" class="btn btn-primary" data-method="log" data-command="c" value="log"></td>
@@ -43,7 +43,7 @@
           </tr>
         </tbody>
       </table>
-      <p>If your browser has a console, use the <code>console.log</code> buttons for comparison to see how the call would be handled normally.</p>
+      <p>If your browser has a console, use the <strong>console.log</strong> buttons for comparison to see how the call would be handled normally.</p>
     </div>
   </div>
   <div id="charlie" class="delta echo">This is just for the demo</div>

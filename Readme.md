@@ -33,8 +33,8 @@ Using the `detailPrint` companion plugin, special objects are presented in a mor
 
 ## Demo
 
-[patik.com/code/console-log-polyfill/](http://patik.com/code/console-log-polyfill/)
+[patik.com/code/console-log-polyfill](http://patik.com/code/console-log-polyfill)
 
 ## Documentation
 
-[patik.com/blog/complete-cross-browser-console-log/](http://patik.com/blog/complete-cross-browser-console-log)
+[patik.com/blog/complete-cross-browser-console-log](http://patik.com/blog/complete-cross-browser-console-log)
