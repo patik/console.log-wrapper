@@ -60,7 +60,6 @@ if (!window.log) {
 
     // IE8
     else if (!Function.prototype.bind && typeof console !== 'undefined' && typeof console.log === 'object') {
-      alert('is actually ie8');
       if (log.detailPrint) {
         Function.prototype.call.call(console.log, console, Array.prototype.slice.call(['-----------------'])); // Separator
         args = log.detailPrint(args);
