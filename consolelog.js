@@ -12,7 +12,6 @@ if (Function.prototype.bind && (typeof console === 'object' || typeof console ==
 if (!window.log) {
   window.log = function () {
     var args = arguments,
-        isReallyIE8 = false,
         isReallyIE8Plus = false,
         ua, winRegexp, script, i;
 
