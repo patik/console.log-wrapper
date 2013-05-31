@@ -1,4 +1,12 @@
 /*global log:false*/
+// IE7/8 can't handle forEach methods on an Array, so will blow up unless we shim it, like this:
+if ( !Array.prototype.forEach ) {
+  Array.prototype.forEach = function(fn, scope) {
+    for(var i = 0, len = this.length; i < len; ++i) {
+      fn.call(scope, this[i], i, this);
+    }
+  }
+}
 
 // Tell IE9 to use its built-in console
 if (Function.prototype.bind && (typeof console === 'object' || typeof console === 'function') && typeof console.log === 'object') {
