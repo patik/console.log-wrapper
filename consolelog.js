@@ -13,7 +13,7 @@ if (!window.log) {
     window.log = function() {
         var args = arguments,
             isIECompatibilityView = false,
-            i,
+            i, sliced,
             // Test if the browser is IE8
             isIE8 = function _isIE8() {
                 // Modenizr, es5-shim, and other scripts may polyfill `Function.prototype.bind` so we can't rely solely on whether that is defined
@@ -47,7 +47,7 @@ if (!window.log) {
 
         // Browser with a console
         if (isIECompatibilityView || typeof console.log === 'function') {
-            var x = Array.prototype.slice.call(args);
+            sliced = Array.prototype.slice.call(args);
 
             // Get argument details for browsers with primitive consoles if this optional plugin is included
             if (log.detailPrint && log.needsDetailPrint) {
@@ -62,11 +62,11 @@ if (!window.log) {
                 }
             }
             // Single argument, which is a string
-            else if ((x).length === 1 && typeof x[0] === 'string') {
-                console.log((x).toString());
+            else if ((sliced).length === 1 && typeof sliced[0] === 'string') {
+                console.log((sliced).toString());
             }
             else {
-                console.log((x));
+                console.log((sliced));
             }
         }
 
