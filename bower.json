@@ -1,0 +1,25 @@
+{
+    "name": "console.log-wrapper",
+    "version": "2.0.0",
+    "homepage": "http://patik.github.io/console.log-wrapper/",
+    "authors": [
+        "Craig Patik <craig@patik.com>"
+    ],
+    "description": "Cross-browser console.log() wrapper",
+    "main": "consolelog.js",
+    "keywords": [
+        "console",
+        "log",
+        "logging",
+        "browser",
+        "developer tools"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "demo",
+        "test"
+    ]
+}
