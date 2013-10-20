@@ -12,8 +12,8 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
 if (!window.log) {
     window.log = function() {
         var args = arguments,
-            isReallyIE8Plus = false,
-            ua, winRegexp, script, i,
+            isIECompatibilityView = false,
+            i, sliced,
             // Test if the browser is IE8
             isIE8 = function _isIE8() {
                 // Modenizr, es5-shim, and other scripts may polyfill `Function.prototype.bind` so we can't rely solely on whether that is defined
@@ -29,25 +29,29 @@ if (!window.log) {
         //   otherwise it won't pass the "Browser with a console" condition below. IE8-10 can use
         //   console.log normally, even though in IE7/8 modes it will claim the console is not defined.
         // TODO: Can someone please test this on Windows Vista and Windows 8?
-        if (log.detailPrint && log.needDetailPrint) {
-            ua = navigator.userAgent;
-            winRegexp = /Windows\sNT\s(\d+\.\d+)/;
+        if (log.detailPrint && log.needsDetailPrint) {
+            (function() {
+                var ua = navigator.userAgent,
+                    winRegexp = /Windows\sNT\s(\d+\.\d+)/;
 
-            // Check for certain combinations of Windows and IE versions to test for IE running in an older mode
-            if (console && console.log && /MSIE\s(\d+)/.test(ua) && winRegexp.test(ua)) {
-                // Windows 7 or higher cannot possibly run IE7 or older
-                if (parseFloat(winRegexp.exec(ua)[1]) >= 6.1) {
-                    isReallyIE8Plus = true;
+                // Check for certain combinations of Windows and IE versions to test for IE running in an older mode
+                if (console && console.log && /MSIE\s(\d+)/.test(ua) && winRegexp.test(ua)) {
+                    // Windows 7 or higher cannot possibly run IE7 or older
+                    if (parseFloat(winRegexp.exec(ua)[1]) >= 6.1) {
+                        isIECompatibilityView = true;
+                    }
+                    // Cannot test for IE8+ running in IE7 mode on XP (Win 5.1) or Vista (Win 6.0)...
                 }
-                // Cannot test for IE8+ running in IE7 mode on XP (Win 5.1) or Vista (Win 6.0)...
-            }
+            }());
         }
 
         // Browser with a console
-        if (isReallyIE8Plus || typeof console.log === 'function') {
+        if (isIECompatibilityView || typeof console.log === 'function') {
+            sliced = Array.prototype.slice.call(args);
+
             // Get argument details for browsers with primitive consoles if this optional plugin is included
-            if (log.detailPrint && log.needDetailPrint && log.needDetailPrint()) {
-                // Separator
+            if (log.detailPrint && log.needsDetailPrint) {
+                // Display a separator before the list
                 console.log('-----------------');
                 args = log.detailPrint(args);
                 i = 0;
@@ -58,14 +62,13 @@ if (!window.log) {
                 }
             }
             // Single argument, which is a string
-            else if ((Array.prototype.slice.call(args)).length === 1 && typeof Array.prototype.slice.call(args)[0] === 'string') {
-                console.log((Array.prototype.slice.call(args)).toString());
+            else if (sliced.length === 1 && typeof sliced[0] === 'string') {
+                console.log(sliced.toString());
             }
             else {
-                console.log((Array.prototype.slice.call(args)));
+                console.log(sliced);
             }
         }
-
         // IE8
         else if (isIE8()) {
             if (log.detailPrint) {
@@ -86,22 +89,24 @@ if (!window.log) {
                 Function.prototype.call.call(console.log, console, Array.prototype.slice.call(args));
             }
         }
-
         // IE7 and lower, and other old browsers
         else {
             // Inject Firebug lite
             if (!document.getElementById('firebug-lite')) {
                 // Include the script
-                script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.id = 'firebug-lite';
+                (function () {
+                    var script = document.createElement('script');
 
-                // If you run the script locally, change this to /path/to/firebug-lite/build/firebug-lite.js
-                script.src = 'https://getfirebug.com/firebug-lite.js';
+                    script.type = 'text/javascript';
+                    script.id = 'firebug-lite';
 
-                // If you want to expand the console window by default, uncomment this line
-                //document.getElementsByTagName('HTML')[0].setAttribute('debug','true');
-                document.getElementsByTagName('HEAD')[0].appendChild(script);
+                    // If you run the script locally, change this to /path/to/firebug-lite/build/firebug-lite.js
+                    script.src = 'https://getfirebug.com/firebug-lite.js';
+
+                    // If you want to expand the console window by default, uncomment this line
+                    //document.getElementsByTagName('HTML')[0].setAttribute('debug','true');
+                    document.getElementsByTagName('HEAD')[0].appendChild(script);
+                }());
 
                 setTimeout(function() {
                     window.log.apply(window, args);

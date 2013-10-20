@@ -1,7 +1,7 @@
 window.log = window.log || function() {};
 
 // Checks whether it's necessary to parse details for this browser
-window.log.needDetailPrint = function() {
+window.log.needsDetailPrint = (function() {
     var ua = window.navigator.userAgent,
         uaCheck, uaVersion;
 
@@ -30,7 +30,7 @@ window.log.needDetailPrint = function() {
     }
 
     return false; // true;
-};
+}());
 
 // List arguments separately for easier deciphering in some browsers
 window.log.detailPrint = function(args) {
@@ -41,7 +41,7 @@ window.log.detailPrint = function(args) {
         var reportedType = Object.prototype.toString.call(obj),
             types = 'Array,Date,RegExp,Null'.split(','),
             found = '',
-            n, str, beginStr;
+            n;
 
         // Look for special types that inherit from Object
         n = types.length;
@@ -62,6 +62,14 @@ window.log.detailPrint = function(args) {
         }
         // DOM node (DOM level 2 and level 1, respectively)
         else if ((typeof Node === 'object' && obj instanceof Node) || (typeof obj.nodeType === 'number' && typeof obj.nodeName === 'string')) {
+            found = 'node';
+        }
+
+        // Node list
+        if (/^\[object (HTMLCollection|NodeList|Object)\]$/.test(reportedType) &&
+            typeof obj.length === 'number' &&
+            typeof obj.item !== 'undefined' &&
+            (obj.length === 0 || (typeof obj[0] === 'object' && obj[0].nodeType > 0))) {
             found = 'node';
         }
 
