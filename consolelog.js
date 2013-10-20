@@ -1,8 +1,8 @@
-/*global log:false*/
+/*global log:true */
 
 // Tell IE9 to use its built-in console
-if (Function.prototype.bind && (typeof console === 'object' || typeof console === 'function') && typeof console.log === 'object') {
-  ['log', 'info', 'warn', 'error', 'assert', 'dir', 'clear', 'profile', 'profileEnd']
+if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typeof console.log === 'object' && typeof window.addEventListener === 'function') {
+    ['log', 'info', 'warn', 'error', 'assert', 'dir', 'clear', 'profile', 'profileEnd']
         .forEach(function(method) {
             console[method] = this.call(console[method], console);
         }, Function.prototype.bind);
@@ -13,7 +13,14 @@ if (!window.log) {
     window.log = function() {
         var args = arguments,
             isReallyIE8Plus = false,
-            ua, winRegexp, script, i;
+            ua, winRegexp, script, i,
+            // Test if the browser is IE8
+            isIE8 = function _isIE8() {
+                // Modenizr, es5-shim, and other scripts may polyfill `Function.prototype.bind` so we can't rely solely on whether that is defined
+                return (!Function.prototype.bind || (Function.prototype.bind && typeof window.addEventListener === 'undefined')) &&
+                    typeof console === 'object' &&
+                    typeof console.log === 'object';
+            };
 
         log.history = log.history || []; // store logs to an array for reference
         log.history.push(arguments);
@@ -21,7 +28,6 @@ if (!window.log) {
         // If the detailPrint plugin is loaded, check for IE10- pretending to be an older version,
         //   otherwise it won't pass the "Browser with a console" condition below. IE8-10 can use
         //   console.log normally, even though in IE7/8 modes it will claim the console is not defined.
-        // TODO: Does IE11+ still have a primitive console, too? If so, how do I check for IE11+ running in old IE mode?
         // TODO: Can someone please test this on Windows Vista and Windows 8?
         if (log.detailPrint && log.needDetailPrint) {
             ua = navigator.userAgent;
@@ -38,7 +44,7 @@ if (!window.log) {
         }
 
         // Browser with a console
-        if (isReallyIE8Plus || (typeof console !== 'undefined' && typeof console.log === 'function')) {
+        if (isReallyIE8Plus || typeof console.log === 'function') {
             // Get argument details for browsers with primitive consoles if this optional plugin is included
             if (log.detailPrint && log.needDetailPrint && log.needDetailPrint()) {
                 // Separator
@@ -61,13 +67,16 @@ if (!window.log) {
         }
 
         // IE8
-        else if (!Function.prototype.bind && typeof console !== 'undefined' && typeof console.log === 'object') {
+        else if (isIE8()) {
             if (log.detailPrint) {
-                // Separator
-                Function.prototype.call.call(console.log, console, Array.prototype.slice.call(['-----------------']));
+                // Prettify arguments
                 args = log.detailPrint(args);
-                i = 0;
 
+                // Add separator at the beginning of the list
+                args.unshift('-----------------');
+
+                // Loop through arguments and log them individually
+                i = 0;
                 while (i < args.length) {
                     Function.prototype.call.call(console.log, console, Array.prototype.slice.call([args[i]]));
                     i++;
