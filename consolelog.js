@@ -51,7 +51,7 @@ if (!window.log) {
 
             // Get argument details for browsers with primitive consoles if this optional plugin is included
             if (log.detailPrint && log.needsDetailPrint) {
-                // Separator
+                // Display a separator before the list
                 console.log('-----------------');
                 args = log.detailPrint(args);
                 i = 0;
@@ -62,14 +62,13 @@ if (!window.log) {
                 }
             }
             // Single argument, which is a string
-            else if ((sliced).length === 1 && typeof sliced[0] === 'string') {
-                console.log((sliced).toString());
+            else if (sliced.length === 1 && typeof sliced[0] === 'string') {
+                console.log(sliced.toString());
             }
             else {
-                console.log((sliced));
+                console.log(sliced);
             }
         }
-
         // IE8
         else if (isIE8()) {
             if (log.detailPrint) {
@@ -90,7 +89,6 @@ if (!window.log) {
                 Function.prototype.call.call(console.log, console, Array.prototype.slice.call(args));
             }
         }
-
         // IE7 and lower, and other old browsers
         else {
             // Inject Firebug lite
