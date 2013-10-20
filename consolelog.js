@@ -46,7 +46,7 @@ if (!window.log) {
         // Browser with a console
         if (isReallyIE8Plus || typeof console.log === 'function') {
             // Get argument details for browsers with primitive consoles if this optional plugin is included
-            if (log.detailPrint && log.needDetailPrint && log.needDetailPrint()) {
+            if (log.detailPrint && log.needDetailPrint) {
                 // Separator
                 console.log('-----------------');
                 args = log.detailPrint(args);
