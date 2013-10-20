@@ -1,7 +1,7 @@
 window.log = window.log || function() {};
 
 // Checks whether it's necessary to parse details for this browser
-window.log.needDetailPrint = (function() {
+window.log.needsDetailPrint = (function() {
     var ua = window.navigator.userAgent,
         uaCheck, uaVersion;
 
