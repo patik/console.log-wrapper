@@ -1,21 +1,22 @@
 {
-    "name": "console.log-wrapper",
+    "name": "console-log",
     "version": "2.0.0",
     "homepage": "http://patik.github.io/console.log-wrapper/",
     "authors": [
         "Craig Patik <craig@patik.com>"
     ],
-    "description": "Cross-browser console.log() wrapper",
+    "description": "Cross-browser console logging",
     "main": "consolelog.js",
     "keywords": [
-        "Console",
+        "Console logger",
         "console.log",
         "log",
-        "logging",
+        "Console logging",
         "JavaScript Debugging",
         "Developer Tools",
         "Browser Tools",
         "Legacy Browsers",
+        "oldIE",
         "IE 6",
         "IE 7",
         "IE 8"
@@ -24,8 +25,10 @@
     "ignore": [
         "**/.*",
         "node_modules",
+        "bower.json",
         "bower_components",
         "demo",
+        "index.html",
         "test"
     ]
 }
