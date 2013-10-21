@@ -1,3 +1,12 @@
+/**
+ * Cross-Browser console.log() Wrapper
+ * Detailed Print Plugin
+ *
+ * Version 2.0.0, 2013-10-20
+ * By Craig Patik
+ * https://github.com/patik/console.log-wrapper/
+ */
+
 window.log = window.log || function() {};
 
 // Checks whether it's necessary to parse details for this browser
