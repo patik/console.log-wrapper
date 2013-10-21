@@ -1,2 +1,4 @@
 *.sublime-*
 test
+demo/bootstrap
+demo/*.less

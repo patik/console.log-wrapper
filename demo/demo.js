@@ -41,11 +41,11 @@
 
     function init() {
         // Create the list of example methods and their buttons
-        var inputs = document.getElementsByTagName('input'),
-            i = inputs.length;
+        var buttons = document.getElementsByTagName('button'),
+            i = buttons.length;
 
         while (i--) {
-            addEvent(inputs[i], 'click', execute);
+            addEvent(buttons[i], 'click', execute);
         }
     }
 
