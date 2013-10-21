@@ -14,54 +14,50 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>Cross-browser console.log() Wrapper</h1>
-                <p>Open your console, then click one of the <strong>log</strong>buttons below.</p>
-                <p>These examples will write the major JavaScript variable types to the console (string, object, function, etc). Depending on your console, each type will appear either as a plain strings (IE, mostly) or as interactive, explorable items (Firebug, some others). Note that any limitations are likely imposed by the console itself, not the <code>log()</code>function being demoed here.</p>
-                <p>You can see the <code>log()</code>function in <a href="consolelog.js">consolelog.js</a>. For a detailed explanation, see the <a href="http://patik.com/blog/complete-cross-browser-console-log/">blog post</a>. You can also <a href="https://github.com/patik/console.log-wrapper/">fork the project on GitHub</a>.</p>
+                <p>Open your console, then click one of the <strong>log</strong> buttons below.</p>
+                <p>These examples will write the major JavaScript variable types to the console (string, object, function, etc). Depending on your console, each type will appear either as a plain strings (IE, mostly) or as interactive, explorable items (Firebug, some others). Note that any limitations are likely imposed by the console itself, not the <code>log()</code> function being demoed here.</p>
+                <p>You can see the <code>log()</code> function in <a href="consolelog.js">consolelog.js</a>. For a detailed explanation, see the <a href="http://patik.com/blog/complete-cross-browser-console-log/">blog post</a>. You can also <a href="https://github.com/patik/console.log-wrapper/">fork the project on GitHub</a>.</p>
                 <p>If you're lost, note that this has nothing to do with the mathematical log function. And if you're looking to comfort a grieving cylinder of wood, I <em>really</em> can't help you, sorry!</p>
             </div>
         </div>
+        <div class="row header-row">
+            <div class="col-xs-6">Command</div>
+            <div class="col-xs-6">Arguments</div>
+        </div>
         <div class="row">
-            <div class="col-xs-12">
-                <table id="command-list" class="table">
-                    <thead>
-                        <tr>
-                            <th colspan="2">Command</th>
-                            <th>Arguments</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <button class="btn btn-primary" data-method="log" data-command="a">log</button>
-                            </td>
-                            <td>
-                                <button class="btn btn-default" data-method="console" data-command="a">console.log</button>
-                            </td>
-                            <td><pre><code><span class="c-str">"Here's a string"</span>, <span class="c-num">3.14</span>, { <span class="c-str">"alpha"</span>: <span class="c-num">5</span>, <span class="c-str">"bravo"</span>: <span class="c-key">false</span>}, <span class="c-spec">document</span>.getElementById( <span class="c-str">"charlie"</span>), <span class="c-key">new</span> <span class="c-spec">Date()</span></code></pre></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button class="btn btn-primary" data-method="log" data-command="b">log</button>
-                            </td>
-                            <td>
-                                <button class="btn btn-default" data-method="console" data-command="b">console.log</button>
-                            </td>
-                            <td><pre><code><span class="c-key">function</span>() { alert( <span class="c-str">"hello"</span>); }, ( <span class="c-num">2</span>+ <span class="c-num">2</span>=== <span class="c-num">5</span>), [ <span class="c-num">1</span>, <span class="c-str">"2"</span>, <span class="c-num">3</span>, <span class="c-num">4</span>, <span class="c-str">"5"</span>]</code></pre></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button class="btn btn-primary" data-method="log" data-command="c">log</button>
-                            </td>
-                            <td>
-                                <button class="btn btn-default" data-method="console" data-command="c">console.log</button>
-                            </td>
-                            <td><pre><code>"Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"</code></pre></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>If your browser has a console, use the <strong>console.log</strong> buttons for comparison to see how the call would be handled normally.</p>
+            <div class="col-xs-2 col-sm-1">
+                <button class="btn btn-primary" data-method="log" data-command="a">log</button>
+            </div>
+            <div class="col-xs-4 col-sm-2">
+                <button class="btn btn-default" data-method="console" data-command="a">console.log</button>
+            </div>
+            <div class="col-xs-6 col-sm-9">
+                <pre><code><span class="c-str">"Here's a string"</span>, <span class="c-num">3.14</span>, { <span class="c-str">"alpha"</span>: <span class="c-num">5</span>, <span class="c-str">"bravo"</span>: <span class="c-key">false</span>}, <span class="c-spec">document</span>.getElementById( <span class="c-str">"charlie"</span>), <span class="c-key">new</span> <span class="c-spec">Date()</span></code></pre>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-2 col-sm-1">
+                <button class="btn btn-primary" data-method="log" data-command="b">log</button>
+            </div>
+            <div class="col-xs-4 col-sm-2">
+                <button class="btn btn-default" data-method="console" data-command="b">console.log</button>
+            </div>
+            <div class="col-xs-6 col-sm-9">
+                <pre><code><span class="c-key">function</span>() { alert( <span class="c-str">"hello"</span>); }, ( <span class="c-num">2</span>+ <span class="c-num">2</span>=== <span class="c-num">5</span>), [ <span class="c-num">1</span>, <span class="c-str">"2"</span>, <span class="c-num">3</span>, <span class="c-num">4</span>, <span class="c-str">"5"</span>]</code></pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-sm-1">
+                <button class="btn btn-primary" data-method="log" data-command="c">log</button>
+            </div>
+            <div class="col-xs-4 col-sm-2">
+                <button class="btn btn-default" data-method="console" data-command="c">console.log</button>
+            </div>
+            <div class="col-xs-6 col-sm-9">
+                <pre><code>"Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"</code></pre>
+            </div>
+        </div>
+        <p>If your browser has a console, use the <strong>console.log</strong> buttons for comparison to see how the call would normally be handled.</p>
     </div>
     <div id="charlie" class="delta echo">This element is just for the demo</div>
     <script src="consolelog.js"></script>
