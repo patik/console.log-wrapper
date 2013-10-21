@@ -1,2 +1,4 @@
 *.sublime-*
-index.modernizr.html
+test
+demo/bootstrap
+demo/*.less
