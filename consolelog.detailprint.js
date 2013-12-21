@@ -2,7 +2,7 @@
  * Cross-Browser console.log() Wrapper
  * Detailed Print Plugin
  *
- * Version 2.0.0, 2013-10-20
+ * Version 2.0.1, 2013-12-21
  * By Craig Patik
  * https://github.com/patik/console.log-wrapper/
  */
@@ -10,7 +10,7 @@
 window.log = window.log || function() {};
 
 // Checks whether it's necessary to parse details for this browser
-window.log.needsDetailPrint = (function() {
+window.log.needsDetailPrint = (function _log_needsDetailPrint() {
     var ua = window.navigator.userAgent,
         uaCheck, uaVersion;
 
@@ -33,20 +33,20 @@ window.log.needsDetailPrint = (function() {
             }
         }
     }
-    // Check for Internet Explorer (needed up through version 10)
+    // Check for Internet Explorer up through version 10
     else if (/MSIE\s\d/.test(ua)) {
         return true;
     }
 
-    return false; // true;
+    return false;
 }());
 
 // List arguments separately for easier deciphering in some browsers
-window.log.detailPrint = function(args) {
+window.log.detailPrint = function _log_detailPrint(args) {
     var getSpecificType, detailedArgs, i, j, thisArg, argType, str, beginStr;
 
     // Checks for special JavaScript types that inherit from Object
-    getSpecificType = function(obj) {
+    getSpecificType = function _getSpecificType(obj) {
         var reportedType = Object.prototype.toString.call(obj),
             types = 'Array,Date,RegExp,Null'.split(','),
             found = '',
@@ -143,7 +143,6 @@ window.log.detailPrint = function(args) {
                 detailedArgs.push(beginStr + '(' + argType + ')', thisArg);
 
                 if (argType === 'object') {
-
                     // Print properties for plain objects (first level only)
                     if (typeof thisArg.hasOwnProperty === 'function') {
                         for (j in thisArg) {
