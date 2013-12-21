@@ -48,7 +48,7 @@ window.log.detailPrint = function _log_detailPrint(args) {
     // Checks for special JavaScript types that inherit from Object
     getSpecificType = function _getSpecificType(obj) {
         var reportedType = Object.prototype.toString.call(obj),
-            types = 'Array,Date,RegExp,Null'.split(','),
+            types = ['Array', 'Date', 'RegExp', 'Null'],
             found = '',
             n;
 
@@ -98,60 +98,68 @@ window.log.detailPrint = function _log_detailPrint(args) {
         if (argType === 'object') {
             argType = getSpecificType(thisArg);
 
-            // Include array length and contents' types
-            if (argType === 'array') {
-
-                if (!thisArg.length) {
-                    detailedArgs.push(beginStr + '(array, empty) ', thisArg);
-                }
-                else {
-                    // Get the types of up to 3 items
-                    j = thisArg.length > 3 ? 3 : thisArg.length;
-                    str = '';
-
-                    while (j--) {
-                        str = getSpecificType(thisArg[j]) + ', ' + str;
-                    }
-
-                    if (thisArg.length > 3) {
-                        str += '...';
+            switch(argType) {
+                case 'array':
+                    // Include array length and contents' types
+                    if (!thisArg.length) {
+                        detailedArgs.push(beginStr + '(array, empty) ', thisArg);
                     }
                     else {
-                        str = str.replace(/,\s$/, '');
+                        // Get the types of up to 3 items
+                        j = thisArg.length > 3 ? 3 : thisArg.length;
+                        str = '';
+
+                        while (j--) {
+                            str = getSpecificType(thisArg[j]) + ', ' + str;
+                        }
+
+                        if (thisArg.length > 3) {
+                            str += '...';
+                        }
+                        else {
+                            str = str.replace(/,+\s+$/, '');
+                        }
+
+                        detailedArgs.push(beginStr + '(array, length=' + thisArg.length + ', [' + str + ']) ', thisArg);
                     }
 
-                    detailedArgs.push(beginStr + '(array, length=' + thisArg.length + ', [' + str + ']) ', thisArg);
-                }
-            }
-            else if (argType === 'element') {
-                str = thisArg.nodeName.toLowerCase();
+                    break;
 
-                if (thisArg.id) {
-                    str += '#' + thisArg.id;
-                }
+                case 'element':
+                    str = thisArg.nodeName.toLowerCase();
 
-                if (thisArg.className) {
-                    str += '.' + thisArg.className.replace(/\s+/g, '.');
-                }
+                    if (thisArg.id) {
+                        str += '#' + thisArg.id;
+                    }
 
-                detailedArgs.push(beginStr + '(element, ' + str + ') ', thisArg);
-            }
-            else if (argType === 'date') {
-                detailedArgs.push(beginStr + '(date) ', thisArg.toUTCString());
-            }
-            else {
-                detailedArgs.push(beginStr + '(' + argType + ')', thisArg);
+                    if (thisArg.className) {
+                        str += '.' + thisArg.className.replace(/\s+/g, '.');
+                    }
 
-                if (argType === 'object') {
-                    // Print properties for plain objects (first level only)
-                    if (typeof thisArg.hasOwnProperty === 'function') {
-                        for (j in thisArg) {
-                            if (thisArg.hasOwnProperty(j)) {
-                                detailedArgs.push('  --> "' + j + '" = (' + getSpecificType(thisArg[j]) + ') ', thisArg[j]);
+                    detailedArgs.push(beginStr + '(element, ' + str + ') ', thisArg);
+
+                    break;
+
+                case 'date':
+                    detailedArgs.push(beginStr + '(date) ', thisArg.toUTCString());
+
+                    break;
+
+                default:
+                    detailedArgs.push(beginStr + '(' + argType + ')', thisArg);
+
+                    if (argType === 'object') {
+                        // Print properties for plain objects (first level only)
+                        if (typeof thisArg.hasOwnProperty === 'function') {
+                            for (j in thisArg) {
+                                if (thisArg.hasOwnProperty(j)) {
+                                    detailedArgs.push('  --> "' + j + '" = (' + getSpecificType(thisArg[j]) + ') ', thisArg[j]);
+                                }
                             }
                         }
                     }
-                }
+
+                    break;
             }
         }
         // Print non-objects as-is
