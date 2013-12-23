@@ -9,7 +9,7 @@
 
 // Tell IE9 to use its built-in console
 if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typeof console.log === 'object' && typeof window.addEventListener === 'function') {
-    ['log', 'info', 'warn', 'error', 'assert', 'dir', 'clear', 'profile', 'profileEnd']
+    'log info warn error assert dir clear profile profileEnd'.split()
         .forEach(function(method) {
             console[method] = this.call(console[method], console);
         }, Function.prototype.bind);
