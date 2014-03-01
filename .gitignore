@@ -2,3 +2,4 @@
 test
 demo/bootstrap
 demo/*.less
+node_modules
