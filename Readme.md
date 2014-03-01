@@ -40,5 +40,3 @@ Using the `detailPrint` companion plugin, special objects are presented in a mor
 ## Documentation
 
 [patik.com/blog/complete-cross-browser-console-log](http://patik.com/blog/complete-cross-browser-console-log)
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/patik/console.log-wrapper/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
