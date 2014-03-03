@@ -5,6 +5,10 @@
     "authors": [
         "Craig Patik <craig@patik.com>"
     ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/patik/console.log-wrapper.git"
+    },
     "description": "Cross-browser console logging",
     "main": "consolelog.js",
     "keywords": [
