@@ -46,7 +46,7 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
                     winRegexp = /Windows\sNT\s(\d+\.\d+)/;
 
                 // Check for certain combinations of Windows and IE versions to test for IE running in an older mode
-                if (console && console.log && /MSIE\s(\d+)/.test(ua) && winRegexp.test(ua)) {
+                if (typeof console !== 'undefined' && console.log && /MSIE\s(\d+)/.test(ua) && winRegexp.test(ua)) {
                     // Windows 7 or higher cannot possibly run IE7 or older
                     if (parseFloat(winRegexp.exec(ua)[1]) >= 6.1) {
                         isIECompatibilityView = true;
@@ -57,7 +57,7 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
         }
 
         // Browser with a console
-        if (isIECompatibilityView || typeof console.log === 'function') {
+        if (isIECompatibilityView || (typeof console !== 'undefined' && typeof console.log === 'function')) {
             sliced = Array.prototype.slice.call(args);
 
             // Get argument details for browsers with primitive consoles if this optional plugin is included
@@ -103,13 +103,13 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
         // IE7 and lower, and other old browsers
         else {
             // Inject Firebug lite
-            if (!document.getElementById('firebug-lite')) {
+            if (!document.getElementById('log-firebug-lite')) {
                 // Include the script
                 (function () {
                     var script = document.createElement('script');
 
                     script.type = 'text/javascript';
-                    script.id = 'firebug-lite';
+                    script.id = 'log-firebug-lite';
 
                     // If you run the script locally, change this to /path/to/firebug-lite/build/firebug-lite.js
                     script.src = 'https://getfirebug.com/firebug-lite.js';
@@ -119,6 +119,7 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
                     document.getElementsByTagName('HEAD')[0].appendChild(script);
                 }());
 
+                // Give the script 2 seconds to load before trying to use it
                 setTimeout(function() {
                     window.log.apply(window, args);
                 }, 2000);
