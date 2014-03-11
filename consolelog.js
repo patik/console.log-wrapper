@@ -15,15 +15,19 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
         }, Function.prototype.bind);
 }
 
-// log() -- The complete, cross-browser (we don't judge!) console.log wrapper for his or her logging pleasure
-if (!window.log) {
+// log() -- The complete, cross-browser console.log wrapper for his or her logging pleasure
+(function _log() {
+    if (window.log) {
+        return;
+    }
+
     window.log = function() {
         var args = arguments,
             isIECompatibilityView = false,
             i, sliced,
             // Test if the browser is IE8
             isIE8 = function _isIE8() {
-                // Modenizr, es5-shim, and other scripts may polyfill `Function.prototype.bind` so we can't rely solely on whether that is defined
+                // Modernizr, es5-shim, and other scripts may polyfill `Function.prototype.bind` so we can't rely solely on whether that is defined
                 return (!Function.prototype.bind || (Function.prototype.bind && typeof window.addEventListener === 'undefined')) &&
                     typeof console === 'object' &&
                     typeof console.log === 'object';
@@ -127,4 +131,4 @@ if (!window.log) {
             }
         }
     };
-}
+}());
