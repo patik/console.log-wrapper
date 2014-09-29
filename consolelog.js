@@ -57,7 +57,7 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
         }
 
         // Browser with a console
-        if (isIECompatibilityView || typeof console.log === 'function') {
+        if (isIECompatibilityView || (console && typeof console.log === 'function')) {
             sliced = Array.prototype.slice.call(args);
 
             // Get argument details for browsers with primitive consoles if this optional plugin is included
