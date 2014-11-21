@@ -1,7 +1,7 @@
 /**
  * Cross-Browser console.log() Wrapper
  *
- * Version 2.0.0, 2013-10-20
+ * Version 2.0.3, 2014-11-21
  * By Craig Patik
  * https://github.com/patik/console.log-wrapper/
  */
@@ -57,7 +57,7 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
         }
 
         // Browser with a console
-        if (isIECompatibilityView || typeof console.log === 'function') {
+        if (isIECompatibilityView || (window.console && typeof console.log === 'function')) {
             sliced = Array.prototype.slice.call(args);
 
             // Get argument details for browsers with primitive consoles if this optional plugin is included
