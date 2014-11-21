@@ -33,8 +33,14 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
                     typeof console.log === 'object';
             };
 
+
+
         log.history = log.history || []; // store logs to an array for reference
         log.history.push(arguments);
+
+        if (typeof console === 'undefined') {
+          return {};
+        }
 
         // If the detailPrint plugin is loaded, check for IE10- pretending to be an older version,
         //   otherwise it won't pass the "Browser with a console" condition below. IE8-10 can use
