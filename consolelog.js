@@ -1,10 +1,3 @@
-/**
- * Cross-Browser console.log() Wrapper
- *
- * Version 2.0.3, 2014-11-21
- * By Craig Patik
- * https://github.com/patik/console.log-wrapper/
- */
 /*global log:true */
 
 // Tell IE9 to use its built-in console
