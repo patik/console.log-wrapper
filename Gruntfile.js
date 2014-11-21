@@ -1,10 +1,17 @@
 module.exports = function(grunt) {
-    // Project configuration.
+    require('load-grunt-tasks')(grunt);
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                preserveComments: 'some',
+                banner: '/*! @description <%= pkg.description %>\n' +
+                    ' * @version <%= pkg.version %>\n' +
+                    ' * @date <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+                    ' * @copyright <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+                    ' * <%= pkg.homepage %>\n' +
+                    ' */\n'
             },
             build: {
                 src: '<%= pkg.name %>.js',
@@ -25,25 +32,16 @@ module.exports = function(grunt) {
                 "demo/demo.css": "demo/demo.less"
             }
         },
-        cssmin: {
-            add_banner: {
-                options: {
-                    banner: '/* My minified css file */'
-                },
-                files: {
-                    'path/to/output.css': ['path/to/**/*.css']
-                }
-            }
-        },
         csslint: {
             strict: {
-                options: {
-                    // import: 2
-                },
                 src: ['demo/**/*.css']
             }
         },
         watch: {
+            options: {
+                livereload: true,
+                interrupt: true
+            },
             scripts: {
                 files: ['**/*.js'],
                 tasks: ['jshint'],
@@ -53,7 +51,7 @@ module.exports = function(grunt) {
             },
             styles: {
                 files: ['**/*.less'],
-                tasks: ['less'],
+                tasks: ['less', 'csslint'],
                 options: {
                     spawn: false,
                 }
@@ -61,14 +59,12 @@ module.exports = function(grunt) {
         }
     });
 
-    // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-csslint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    // Default task (JS only)
+    grunt.registerTask('default', ['jshint', 'uglify']);
 
-    // Default task(s).
-    grunt.registerTask('default', ['jshint', 'uglify', 'less', 'csslint', 'cssmin']);
+    // Demo
+    grunt.registerTask('demo', ['default', 'less', 'csslint']);
+
+    // Development
+    grunt.registerTask('dev', ['default', 'watch']);
 };

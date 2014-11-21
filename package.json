@@ -1,17 +1,17 @@
 {
     "name": "consolelog",
-    "description": "Cross-browser console logging",
+    "description": "Cross-Browser console.log() Wrapper",
     "version": "2.0.3",
     "main": "consolelog",
     "author": "Craig Patik <craig@patik.com> (http://patik.com)",
     "devDependencies": {
-        "grunt": "~0.4.2",
-        "grunt-contrib-jshint": "~0.6.3",
-        "grunt-contrib-uglify": "~0.2.2",
-        "grunt-contrib-less": "~0.8.3",
-        "grunt-contrib-cssmin": "~0.7.0",
-        "grunt-contrib-csslint": "~0.2.0",
-        "grunt-contrib-watch": "~0.5.3"
+        "grunt": "^0.4.5",
+        "grunt-contrib-jshint": "^0.6.5",
+        "grunt-contrib-uglify": "^0.2.7",
+        "grunt-contrib-less": "^0.8.3",
+        "grunt-contrib-csslint": "^0.2.0",
+        "grunt-contrib-watch": "^0.5.3",
+        "load-grunt-tasks": "^1.0.0"
     },
     "keywords": [
         "Console logger",
@@ -40,13 +40,13 @@
         "test": "test"
     },
     "dependencies": {
-        "grunt": "~0.4.2",
-        "grunt-contrib-cssmin": "~0.7.0",
-        "grunt-contrib-jshint": "~0.6.5",
-        "grunt-contrib-csslint": "~0.2.0",
-        "grunt-contrib-less": "~0.8.3",
-        "grunt-contrib-uglify": "~0.2.7",
-        "grunt-contrib-watch": "~0.5.3"
+        "grunt": "^0.4.5",
+        "grunt-contrib-jshint": "^0.6.5",
+        "grunt-contrib-uglify": "^0.2.7",
+        "grunt-contrib-less": "^0.8.3",
+        "grunt-contrib-csslint": "^0.2.0",
+        "grunt-contrib-watch": "^0.5.3",
+        "load-grunt-tasks": "^1.0.0"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
