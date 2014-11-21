@@ -4,6 +4,15 @@ Just drop consolelog.js in your project and start passing data to `log()`. Which
 
 **Demo: [patik.github.io/console.log-wrapper](http://patik.github.io/console.log-wrapper/)**
 
+## Usage
+
+Install using npm: `npm install consolelog`
+or Bower: `bower install consolelog`
+
+Or download and reference [consolelog.js](https://github.com/patik/console.log-wrapper/blob/master/consolelog.js) in your page.
+
+Use `log()` to write to the console.
+
 ## Detail Print
 
 This is an optional plugin to provide help information about the data that is being logged, especially in IE and older browsers. Just include [consolelog.detailprint.js](https://github.com/patik/console.log-wrapper/blob/master/consolelog.detailprint.js) along with [consolelog.js](https://github.com/patik/console.log-wrapper/blob/master/consolelog.js).

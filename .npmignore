@@ -1,0 +1,7 @@
+*.sublime-*
+node_modules
+.gitattributes
+.jshintrc
+demo
+test
+bower.json

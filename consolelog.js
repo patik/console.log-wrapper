@@ -1,7 +1,7 @@
 /**
  * Cross-Browser console.log() Wrapper
  *
- * Version 2.0.0, 2013-10-20
+ * Version 2.0.3, 2014-11-21
  * By Craig Patik
  * https://github.com/patik/console.log-wrapper/
  */
@@ -15,22 +15,32 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
         }, Function.prototype.bind);
 }
 
-// log() -- The complete, cross-browser (we don't judge!) console.log wrapper for his or her logging pleasure
-if (!window.log) {
+// log() -- The complete, cross-browser console.log wrapper for his or her logging pleasure
+(function _log() {
+    if (window.log) {
+        return;
+    }
+
     window.log = function() {
         var args = arguments,
             isIECompatibilityView = false,
             i, sliced,
             // Test if the browser is IE8
             isIE8 = function _isIE8() {
-                // Modenizr, es5-shim, and other scripts may polyfill `Function.prototype.bind` so we can't rely solely on whether that is defined
+                // Modernizr, es5-shim, and other scripts may polyfill `Function.prototype.bind` so we can't rely solely on whether that is defined
                 return (!Function.prototype.bind || (Function.prototype.bind && typeof window.addEventListener === 'undefined')) &&
                     typeof console === 'object' &&
                     typeof console.log === 'object';
             };
 
+
+
         log.history = log.history || []; // store logs to an array for reference
         log.history.push(arguments);
+
+        if (typeof console === 'undefined') {
+          return {};
+        }
 
         // If the detailPrint plugin is loaded, check for IE10- pretending to be an older version,
         //   otherwise it won't pass the "Browser with a console" condition below. IE8-10 can use
@@ -53,7 +63,7 @@ if (!window.log) {
         }
 
         // Browser with a console
-        if (isIECompatibilityView || typeof console.log === 'function') {
+        if (isIECompatibilityView || (window.console && typeof console.log === 'function')) {
             sliced = Array.prototype.slice.call(args);
 
             // Get argument details for browsers with primitive consoles if this optional plugin is included
@@ -127,4 +137,4 @@ if (!window.log) {
             }
         }
     };
-}
+}());

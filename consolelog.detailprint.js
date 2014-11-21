@@ -2,7 +2,7 @@
  * Cross-Browser console.log() Wrapper
  * Detailed Print Plugin
  *
- * Version 2.0.0, 2013-10-20
+ * Version 2.0.1, 2013-12-21
  * By Craig Patik
  * https://github.com/patik/console.log-wrapper/
  */
@@ -10,7 +10,7 @@
 window.log = window.log || function() {};
 
 // Checks whether it's necessary to parse details for this browser
-window.log.needsDetailPrint = (function() {
+window.log.needsDetailPrint = (function _log_needsDetailPrint() {
     var ua = window.navigator.userAgent,
         uaCheck, uaVersion;
 
@@ -33,22 +33,22 @@ window.log.needsDetailPrint = (function() {
             }
         }
     }
-    // Check for Internet Explorer (needed up through version 10)
+    // Check for Internet Explorer up through version 10
     else if (/MSIE\s\d/.test(ua)) {
         return true;
     }
 
-    return false; // true;
+    return false;
 }());
 
 // List arguments separately for easier deciphering in some browsers
-window.log.detailPrint = function(args) {
+window.log.detailPrint = function _log_detailPrint(args) {
     var getSpecificType, detailedArgs, i, j, thisArg, argType, str, beginStr;
 
     // Checks for special JavaScript types that inherit from Object
-    getSpecificType = function(obj) {
+    getSpecificType = function _getSpecificType(obj) {
         var reportedType = Object.prototype.toString.call(obj),
-            types = 'Array,Date,RegExp,Null'.split(','),
+            types = ['Array', 'Date', 'RegExp', 'Null'],
             found = '',
             n;
 
@@ -98,61 +98,68 @@ window.log.detailPrint = function(args) {
         if (argType === 'object') {
             argType = getSpecificType(thisArg);
 
-            // Include array length and contents' types
-            if (argType === 'array') {
-
-                if (!thisArg.length) {
-                    detailedArgs.push(beginStr + '(array, empty) ', thisArg);
-                }
-                else {
-                    // Get the types of up to 3 items
-                    j = thisArg.length > 3 ? 3 : thisArg.length;
-                    str = '';
-
-                    while (j--) {
-                        str = getSpecificType(thisArg[j]) + ', ' + str;
-                    }
-
-                    if (thisArg.length > 3) {
-                        str += '...';
+            switch(argType) {
+                case 'array':
+                    // Include array length and contents' types
+                    if (!thisArg.length) {
+                        detailedArgs.push(beginStr + '(array, empty) ', thisArg);
                     }
                     else {
-                        str = str.replace(/,\s$/, '');
+                        // Get the types of up to 3 items
+                        j = thisArg.length > 3 ? 3 : thisArg.length;
+                        str = '';
+
+                        while (j--) {
+                            str = getSpecificType(thisArg[j]) + ', ' + str;
+                        }
+
+                        if (thisArg.length > 3) {
+                            str += '...';
+                        }
+                        else {
+                            str = str.replace(/,+\s+$/, '');
+                        }
+
+                        detailedArgs.push(beginStr + '(array, length=' + thisArg.length + ', [' + str + ']) ', thisArg);
                     }
 
-                    detailedArgs.push(beginStr + '(array, length=' + thisArg.length + ', [' + str + ']) ', thisArg);
-                }
-            }
-            else if (argType === 'element') {
-                str = thisArg.nodeName.toLowerCase();
+                    break;
 
-                if (thisArg.id) {
-                    str += '#' + thisArg.id;
-                }
+                case 'element':
+                    str = thisArg.nodeName.toLowerCase();
 
-                if (thisArg.className) {
-                    str += '.' + thisArg.className.replace(/\s+/g, '.');
-                }
+                    if (thisArg.id) {
+                        str += '#' + thisArg.id;
+                    }
 
-                detailedArgs.push(beginStr + '(element, ' + str + ') ', thisArg);
-            }
-            else if (argType === 'date') {
-                detailedArgs.push(beginStr + '(date) ', thisArg.toUTCString());
-            }
-            else {
-                detailedArgs.push(beginStr + '(' + argType + ')', thisArg);
+                    if (thisArg.className) {
+                        str += '.' + thisArg.className.replace(/\s+/g, '.');
+                    }
 
-                if (argType === 'object') {
+                    detailedArgs.push(beginStr + '(element, ' + str + ') ', thisArg);
 
-                    // Print properties for plain objects (first level only)
-                    if (typeof thisArg.hasOwnProperty === 'function') {
-                        for (j in thisArg) {
-                            if (thisArg.hasOwnProperty(j)) {
-                                detailedArgs.push('  --> "' + j + '" = (' + getSpecificType(thisArg[j]) + ') ', thisArg[j]);
+                    break;
+
+                case 'date':
+                    detailedArgs.push(beginStr + '(date) ', thisArg.toUTCString());
+
+                    break;
+
+                default:
+                    detailedArgs.push(beginStr + '(' + argType + ')', thisArg);
+
+                    if (argType === 'object') {
+                        // Print properties for plain objects (first level only)
+                        if (typeof thisArg.hasOwnProperty === 'function') {
+                            for (j in thisArg) {
+                                if (thisArg.hasOwnProperty(j)) {
+                                    detailedArgs.push('  --> "' + j + '" = (' + getSpecificType(thisArg[j]) + ') ', thisArg[j]);
+                                }
                             }
                         }
                     }
-                }
+
+                    break;
             }
         }
         // Print non-objects as-is
