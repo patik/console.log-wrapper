@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                 interrupt: true
             },
             scripts: {
-                files: ['**/*.js'],
+                files: ['consolelog.js', 'consolelog.detailprint.js', 'demo/demo.js'],
                 tasks: ['jshint'],
                 options: {
                     spawn: false,
