@@ -37,7 +37,7 @@
                         <button class="btn btn-default" data-method="console" data-command="a">console.log</button>
                     </td>
                     <td class="col-xs-6 col-sm-9">
-                        <pre><code><span class="c-str">"Here's a string"</span>, <span class="c-num">3.14</span>, { <span class="c-str">"alpha"</span>: <span class="c-num">5</span>, <span class="c-str">"bravo"</span>: <span class="c-key">false</span>}, <span class="c-spec">document</span>.getElementById( <span class="c-str">"charlie"</span>), <span class="c-key">new</span> <span class="c-spec">Date()</span></code></pre>
+                        <pre><code><span class="c-str">"Here's a string"</span>, <span class="c-num">3.14</span>, { <span class="c-str">"alpha"</span>: <span class="c-num">5</span>, <span class="c-str">"bravo"</span>: <span class="c-key">false</span> }, <span class="c-spec">document</span>.getElementById(<span class="c-str">"charlie"</span>), <span class="c-key">new</span> <span class="c-spec">Date()</span></code></pre>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +48,7 @@
                         <button class="btn btn-default" data-method="console" data-command="b">console.log</button>
                     </td>
                     <td class="col-xs-6 col-sm-9">
-                        <pre><code><span class="c-key">function</span>() { alert( <span class="c-str">"hello"</span>); }, ( <span class="c-num">2</span>+ <span class="c-num">2</span>=== <span class="c-num">5</span>), [ <span class="c-num">1</span>, <span class="c-str">"2"</span>, <span class="c-num">3</span>, <span class="c-num">4</span>, <span class="c-str">"5"</span>]</code></pre>
+                        <pre><code><span class="c-key">function</span>() { alert(<span class="c-str">"hello"</span>); }, (<span class="c-num">2</span> + <span class="c-num">2</span> === <span class="c-num">5</span>), [<span class="c-num">1</span>, <span class="c-str">"2"</span>, <span class="c-num">3</span>, <span class="c-num">4</span>, <span class="c-str">"5"</span>]</code></pre>
                     </td>
                 </tr>
                 <tr>
@@ -64,10 +64,69 @@
                 </tr>
             </tbody>
         </table>
-
-        <p>If your browser has a console, use the <strong>console.log</strong> buttons for comparison to see how the call would normally be handled.</p>
     </div>
-    <div id="charlie" class="delta echo">This element is just for the demo</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>If your browser has a console, use the <strong>console.log</strong> buttons for comparison to see how the call would normally be handled.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container hidden" id="options">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Options</h2>
+            </div>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <div class="checkbox">
+                            <label for="lineNumber">
+                                <input type="checkbox" class="form-control" id="lineNumber">
+                                Append actual line numbers to output
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group hidden">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <div class="checkbox">
+                            <label for="group">
+                                <input type="checkbox" class="form-control" id="group">
+                                Group multiple arguments in the console
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="group-options" class="hidden">
+                    <div class="form-group">
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <div class="checkbox">
+                                <label for="groupLabel" class="col-sm-2 control-label">Group label:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="groupLabel" value="Log:">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <div class="checkbox">
+                                <label for="groupCollapsed">
+                                    <input type="checkbox" class="form-control" id="groupCollapsed" checked="checked">
+                                    Collapse groups
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="charlie" class="delta echo hidden">This element is just for the demo</div>
     <script src="consolelog.js"></script>
     <script src="consolelog.detailprint.js"></script>
     <script src="demo/demo.js"></script>
