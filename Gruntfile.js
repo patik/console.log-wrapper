@@ -24,26 +24,13 @@ module.exports = function(grunt) {
             },
             files: ['consolelog.js', 'consolelog.detailprint.js']
         },
-        less: {
-            options: {
-                paths: ["demo/bootstrap"]
-            },
-            files: {
-                "demo/demo.css": "demo/demo.less"
-            }
-        },
-        csslint: {
-            strict: {
-                src: ['demo/**/*.css']
-            }
-        },
         watch: {
             options: {
                 livereload: true,
                 interrupt: true
             },
             scripts: {
-                files: ['**/*.js'],
+                files: ['consolelog.js', 'consolelog.detailprint.js', 'demo/demo.js'],
                 tasks: ['jshint'],
                 options: {
                     spawn: false,
@@ -56,15 +43,35 @@ module.exports = function(grunt) {
                     spawn: false,
                 }
             }
+        },
+
+        // The rest of the tasks are only for updating the demo page
+        less: {
+            options: {
+                paths: ["demo", "demo/bootstrap"]
+            },
+            demo: {
+                files: {
+                    "demo/demo.css": "demo/demo.less"
+                }
+            }
+        },
+        csslint: {
+            options: {
+                csslintrc: "demo/bootstrap/.csslintrc"
+            },
+            strict: {
+                src: ['demo/**/*.css']
+            }
         }
     });
 
     // Default task (JS only)
     grunt.registerTask('default', ['jshint', 'uglify']);
 
-    // Demo
-    grunt.registerTask('demo', ['default', 'less', 'csslint']);
-
     // Development
     grunt.registerTask('dev', ['default', 'watch']);
+
+    // Demo
+    grunt.registerTask('demo', ['default', 'less', 'csslint', 'watch']);
 };

@@ -13,6 +13,28 @@ Or download and reference [consolelog.js](https://github.com/patik/console.log-w
 
 Use `log()` to write to the console.
 
+### Settings
+
+You can change some optional preferences by passing an object to `log.settings()`. The defaults are shown below.
+
+```js
+log.settings({
+    lineNumber: true,
+    group: {
+        label: 'Log:',
+        collapsed: false
+    }
+});
+```
+
+- `lineNumber` (Boolean)
+    + Whether to append the actual line number to each log. Not supported by all browsers.
+- `group` (Boolean or object)
+    + Groups the arguments for each log together
+    + `collapsed: true` will collapse each group (in browsers that support collapsing)
+    + `label: "some string"` sets the label or name for the groups
+    + Simply setting `group: true` is a shorthand way of selecting the defaults
+
 ## Detail Print
 
 This is an optional plugin to provide help information about the data that is being logged, especially in IE and older browsers. Just include [consolelog.detailprint.js](https://github.com/patik/console.log-wrapper/blob/master/consolelog.detailprint.js) along with [consolelog.js](https://github.com/patik/console.log-wrapper/blob/master/consolelog.js).
