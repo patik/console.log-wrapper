@@ -47,10 +47,34 @@ if (!window.log) {
                 label: 'Log:',
                 collapsed: true
             },
+
+            /**
+             * Add Firebug Lite to the page
+             */
             includeFirebug = function _includeFirebug() {
                 (function(F,i,r,e,b,u,g,L,I,T,E){if(F.getElementById(b)){return;}E=F[i+'NS']&&F.documentElement.namespaceURI;E=E?F[i+'NS'](E,'script'):F[i]('script');E[r]('id',b);E[r]('src',I+g+T);E[r](b,u);(F[e]('head')[0]||F[e]('body')[0]).appendChild(E);E=new Image();E[r]('src',I+L);})(document,'createElement','setAttribute','getElementsByTagName','FirebugLite','4','firebug-lite.js','releases/lite/latest/skin/xp/sprite.png','https://getfirebug.com/','#startOpened');
             },
-            /*! @description Precise type-checker for JavaScript
+
+            /**
+             * Extract line number from the error stack
+             * Thanks to drzaus http://stackoverflow.com/a/14841411/348995
+             */
+            getLineFromStack = function _getLineFromStack(stack) {
+                var suffix = stack.split('\n')[2];
+
+                if (suffix.indexOf(' (') >= 0) {
+                    suffix = suffix.split(' (')[1].substring(0, suffix.length - 1);
+                }
+                else {
+                    suffix = suffix.split('at ')[1];
+                }
+
+                suffix = '@' + suffix.substr(suffix.lastIndexOf('/') + 1);
+
+                return suffix;
+            },
+
+            /** @description Precise type-checker for JavaScript
              * @version 1.0.0
              * @date 2014-11-27
              * @copyright 2014
@@ -66,7 +90,7 @@ if (!window.log) {
                 // Whether this browser has a console we can call directly
                 // Must evaluate this on each run in case Firebug was loaded since it will define the console
                 hasConsole = (isIECompatibilityView || (window.console && typeof console.log === 'function')),
-                i;
+                err, i;
 
             log.history.push(arguments);
 
@@ -79,6 +103,20 @@ if (!window.log) {
                     }
                     else {
                         console.group(log.options.group.label);
+                    }
+                }
+
+                // Add line number
+                if (log.options.lineNumber) {
+                    err = new Error();
+
+                    // Firefox
+                    if (err.fileName && err.lineNumber) {
+                        sliced.push('@' + err.fileName.substr(err.fileName.lastIndexOf('/') + 1) + ':' + err.lineNumber + ':1');
+                    }
+                    // Chrome/WebKit
+                    else if (err.stack) {
+                        sliced.push(getLineFromStack(err.stack));
                     }
                 }
 
