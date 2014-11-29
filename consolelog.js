@@ -39,14 +39,24 @@ if (!window.log) {
             }()),
             // Check for IE 10/11 now that we've had a chance to properly define `isIECompatibilityView` above
             isIEModern = (!isIECompatibilityView && !isIE8 && /Trident\//.test(ua)),
-            includeFirebug = function _includeFirebug() {
-                (function(F,i,r,e,b,u,g,L,I,T,E){if(F.getElementById(b)){return;}E=F[i+'NS']&&F.documentElement.namespaceURI;E=E?F[i+'NS'](E,'script'):F[i]('script');E[r]('id',b);E[r]('src',I+g+T);E[r](b,u);(F[e]('head')[0]||F[e]('body')[0]).appendChild(E);E=new Image();E[r]('src',I+L);})(document,'createElement','setAttribute','getElementsByTagName','FirebugLite','4','firebug-lite.js','releases/lite/latest/skin/xp/sprite.png','https://getfirebug.com/','#startOpened');
-            },
+            // Whether this browser has a console we can call directly
+            // Must evaluate this on each run in case Firebug was loaded since it will define the console
+            hasConsole = (isIECompatibilityView || (window.console && typeof console.log === 'function')),
             firebugAttempts = 0,
             defaultGroupOptions = {
                 label: 'Log:',
                 collapsed: true
-            };
+            },
+            includeFirebug = function _includeFirebug() {
+                (function(F,i,r,e,b,u,g,L,I,T,E){if(F.getElementById(b)){return;}E=F[i+'NS']&&F.documentElement.namespaceURI;E=E?F[i+'NS'](E,'script'):F[i]('script');E[r]('id',b);E[r]('src',I+g+T);E[r](b,u);(F[e]('head')[0]||F[e]('body')[0]).appendChild(E);E=new Image();E[r]('src',I+L);})(document,'createElement','setAttribute','getElementsByTagName','FirebugLite','4','firebug-lite.js','releases/lite/latest/skin/xp/sprite.png','https://getfirebug.com/','#startOpened');
+            },
+            /*! @description Precise type-checker for JavaScript
+             * @version 1.0.0
+             * @date 2014-11-27
+             * @copyright 2014
+             * https://github.com/patik/kind
+             */
+            kind=function(a){var b,c,d;if(null===a){return"null";}if(/function|undefined|string|boolean|number/.test(typeof a)){return typeof a;}if("object"===typeof a){for(b=Object.prototype.toString.call(a),c=["Math","ErrorEvent","Error","Date","RegExp","Event","Array"],d=c.length;d--;){if(b==="[object "+c[d]+"]"){return c[d].toLowerCase();}return"object"===typeof HTMLElement&&a instanceof HTMLElement?"element":"string"===typeof a.nodeName&&1===a.nodeType?"element":"object"===typeof Node&&a instanceof Node?"node":"number"===typeof a.nodeType&&"string"===typeof a.nodeName?"node":/^\[object (HTMLCollection|NodeList|Object)\]$/.test(b)&&"number"===typeof a.length&&"undefined"!==typeof a.item&&(0===a.length||"object"===typeof a[0]&&a[0].nodeType>0)?"nodelist":"object";}}return"unknown";};
 
         // Define function
         window.log = function() {
@@ -219,11 +229,3 @@ if (!window.log) {
         };
     }());
 }
-
-/*! @description Precise type-checker for JavaScript
- * @version 1.0.0
- * @date 2014-11-27
- * @copyright 2014
- * https://github.com/patik/kind
- */
-window.kind=function(a){var b,c,d;if(null===a){return"null";}if(/function|undefined|string|boolean|number/.test(typeof a)){return typeof a;}if("object"===typeof a){for(b=Object.prototype.toString.call(a),c=["Math","ErrorEvent","Error","Date","RegExp","Event","Array"],d=c.length;d--;){if(b==="[object "+c[d]+"]"){return c[d].toLowerCase();}return"object"===typeof HTMLElement&&a instanceof HTMLElement?"element":"string"===typeof a.nodeName&&1===a.nodeType?"element":"object"===typeof Node&&a instanceof Node?"node":"number"===typeof a.nodeType&&"string"===typeof a.nodeName?"node":/^\[object (HTMLCollection|NodeList|Object)\]$/.test(b)&&"number"===typeof a.length&&"undefined"!==typeof a.item&&(0===a.length||"object"===typeof a[0]&&a[0].nodeType>0)?"nodelist":"object";}}return"unknown";};
