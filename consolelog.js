@@ -2,10 +2,17 @@
 
 // Tell IE9 to use its built-in console
 if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typeof console.log === 'object' && typeof window.addEventListener === 'function') {
-    ['_exception', 'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log', 'profile', 'profileEnd', 'table', 'time', 'timeEnd', 'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn']
+    // Supported console methods
+    ['assert', 'clear', 'dir', 'error', 'info', 'log', 'profile', 'profileEnd', 'warn']
         .forEach(function(method) {
             console[method] = this.call(console[method], console);
         }, Function.prototype.bind);
+
+    // Unsupported console methods, fallback to `log`
+    ['_exception', 'count', 'debug', 'dirxml', 'group', 'groupCollapsed', 'groupEnd', 'table', 'time', 'timeEnd', 'timeline', 'timelineEnd', 'timeStamp', 'trace']
+        .forEach(function(method) {
+            console[method] = console.log;
+        });
 }
 
 // log() -- The complete, cross-browser console.log wrapper for his or her logging pleasure
@@ -32,8 +39,10 @@ if (!window.log) {
             }()),
             // Test if the browser is IE8
             isIE8 = (function _isIE8() {
+                var fpb = Function.prototype.bind;
+
                 // Modernizr, es5-shim, and other scripts may polyfill `Function.prototype.bind` so we can't rely solely on whether that is defined
-                return (!Function.prototype.bind || (Function.prototype.bind && typeof window.addEventListener === 'undefined')) &&
+                return (!fpb || (fpb && typeof window.addEventListener === 'undefined')) &&
                     typeof console === 'object' &&
                     typeof console.log === 'object';
             }()),
