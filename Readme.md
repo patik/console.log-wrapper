@@ -2,7 +2,9 @@
 
 *Safe, clear console logging for every browser*
 
-Just drop consolelog.js in your project and start passing data to `log()`. Whichever browser you're testing in, you'll see your data in the console &mdash; if the browser doesn't have a console, Firebug Lite will load. You can pass any variable type: strings, objects, arrays, functions, etc.
+Log to the console &mdash; even legacy browsers without a console. Just pass any data to `log()` and you'll see it printed clearly and well-structured in the console.
+
+If the browser doesn't have a console, Firebug Lite will load. You can pass any variable type: strings, objects, arrays, functions, etc.
 
 **Demo: [patik.github.io/console.log-wrapper](http://patik.github.io/console.log-wrapper/)**
 
