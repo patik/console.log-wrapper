@@ -43,26 +43,6 @@ module.exports = function(grunt) {
                     spawn: false,
                 }
             }
-        },
-
-        // The rest of the tasks are only for updating the demo page
-        less: {
-            options: {
-                paths: ["demo", "demo/bootstrap"]
-            },
-            demo: {
-                files: {
-                    "demo/demo.css": "demo/demo.less"
-                }
-            }
-        },
-        csslint: {
-            options: {
-                csslintrc: "demo/bootstrap/.csslintrc"
-            },
-            strict: {
-                src: ['demo/**/*.css']
-            }
         }
     });
 
@@ -71,7 +51,4 @@ module.exports = function(grunt) {
 
     // Development
     grunt.registerTask('dev', ['default', 'watch']);
-
-    // Demo
-    grunt.registerTask('demo', ['default', 'less', 'csslint', 'watch']);
 };

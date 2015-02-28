@@ -69,17 +69,17 @@ console.log(
 
 Results in:
 
-![Firebug running in Firefox](https://raw.github.com/patik/console.log-wrapper/master/demo/firebug.png)
+![Firebug running in Firefox](https://raw.github.com/patik/console.log-wrapper/gh-pages/demo/firebug.png)
 
-Some browsers that have a primitive console &mdash; ones that does not expand arrays, links DOM elements to the source code, prints objects as `[object Object]` rather than listing their properties, etc.
+Some browsers that have a primitive console &mdash; one that does not expand arrays, does not link DOM elements to the source code, only prints objects as `[object Object]` rather than listing their properties, etc.
 
-![IE8 without Detail Print](https://raw.github.com/patik/console.log-wrapper/master/demo/ie8-without-detail-print.png)
+![IE8 without Detail Print](https://raw.github.com/patik/console.log-wrapper/gh-pages/demo/ie8-without-detail-print.png)
 
 Some cannot accept multiple arguments to a single `console.log` call. This includes IE 7/8/9/10, iOS 5 and older, and Opera 11 and older, among others.
 
 Using the `detailPrint` companion plugin, special objects are presented in a more readable manner.
 
-![IE8 with Detail Print](https://raw.github.com/patik/console.log-wrapper/master/demo/ie8-with-detail-print.png)
+![IE8 with Detail Print](https://raw.github.com/patik/console.log-wrapper/gh-pages/demo/ie8-with-detail-print.png)
 
 ## Demo
 

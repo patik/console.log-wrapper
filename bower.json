@@ -31,8 +31,6 @@
         "node_modules",
         "bower.json",
         "bower_components",
-        "demo",
-        "index.html",
         "test"
     ]
 }
