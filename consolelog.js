@@ -1,4 +1,4 @@
-/*global log:true, kind:true */
+/*global log:true, kind:true, define:true */
 
 // Tell IE9 to use its built-in console
 if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typeof console.log === 'object' && typeof window.addEventListener === 'function') {
@@ -15,10 +15,28 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
         });
 }
 
-// log() -- The complete, cross-browser console.log wrapper for his or her logging pleasure
-if (!window.log) {
-    (function _log() {
-        var ua = navigator.userAgent,
+// AMD support
+(function (name, definition) {
+    if (typeof module !== 'undefined') {
+        module.exports = definition();
+    }
+    else if (typeof define === "function" && define.amd) {
+        define(definition);
+    }
+    // Fall back to a global variable
+    else {
+        window[name] = definition();
+    }
+}('log',
+
+    /**
+     * Complete cross-browser console.log wrapper
+     *
+     * @return  {Function}  `log` method
+     */
+    function _log() {
+        var log,
+            ua = navigator.userAgent,
             isIECompatibilityView = (function() {
                 // If the detailPrint plugin is loaded, check for IE11- pretending to be an older version,
                 //   otherwise it won't pass the "Browser with a console" condition below. IE8-10 can use
@@ -92,7 +110,7 @@ if (!window.log) {
             kind=function(a){var b,c,d;if(null===a){return"null";}if(/function|undefined|string|boolean|number/.test(typeof a)){return typeof a;}if("object"===typeof a){for(b=Object.prototype.toString.call(a),c=["Math","ErrorEvent","Error","Date","RegExp","Event","Array"],d=c.length;d--;){if(b==="[object "+c[d]+"]"){return c[d].toLowerCase();}return"object"===typeof HTMLElement&&a instanceof HTMLElement?"element":"string"===typeof a.nodeName&&1===a.nodeType?"element":"object"===typeof Node&&a instanceof Node?"node":"number"===typeof a.nodeType&&"string"===typeof a.nodeName?"node":/^\[object (HTMLCollection|NodeList|Object)\]$/.test(b)&&"number"===typeof a.length&&"undefined"!==typeof a.item&&(0===a.length||"object"===typeof a[0]&&a[0].nodeType>0)?"nodelist":"object";}}return"unknown";};
 
         // Define function
-        window.log = function() {
+        log = function() {
             var args = arguments,
                 // Convert arguments to an array
                 sliced = Array.prototype.slice.call(args),
@@ -274,5 +292,7 @@ if (!window.log) {
 
             }
         };
-    }());
-}
+
+        return log;
+    }
+));
