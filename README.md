@@ -11,6 +11,7 @@ If the browser doesn't have a console, Firebug Lite will load. You can pass any 
 ## Installation
 
 **npm**: `npm install consolelog`
+
 **Bower**: `bower install consolelog`
 
 Or just download [consolelog.js](https://github.com/patik/console.log-wrapper/blob/master/consolelog.js) and reference it in your page with a `<script>` tag.
