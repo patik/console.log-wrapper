@@ -1,17 +1,31 @@
-# All-in-one console.log wrapper
+# Console.log wrapper
+
+*Safe, clear console logging for every browser*
 
 Just drop consolelog.js in your project and start passing data to `log()`. Whichever browser you're testing in, you'll see your data in the console &mdash; if the browser doesn't have a console, Firebug Lite will load. You can pass any variable type: strings, objects, arrays, functions, etc.
 
 **Demo: [patik.github.io/console.log-wrapper](http://patik.github.io/console.log-wrapper/)**
 
+## Installation
+
+**npm**: `npm install consolelog`
+**Bower**: `bower install consolelog`
+
+Or just download [consolelog.js](https://github.com/patik/console.log-wrapper/blob/master/consolelog.js) and reference it in your page with a `<script>` tag.
+
 ## Usage
 
-Install using npm: `npm install consolelog`
-or Bower: `bower install consolelog`
+Use `log()` wherever you want to write to the console.
 
-Or download and reference [consolelog.js](https://github.com/patik/console.log-wrapper/blob/master/consolelog.js) in your page.
+### AMD with RequireJS
 
-Use `log()` to write to the console.
+Consolelog.js is AMD-compliant and supports Common JS:
+
+```js
+require(['consolelog'], function(log) {
+    log('It works!');
+});
+```
 
 ### Settings
 
@@ -42,12 +56,13 @@ This is an optional plugin to provide help information about the data that is be
 Firebug, WebKit's Developer Tools, and Opera's Dragonfly print useful, interactive items to the console. For example:
 
 ````js
-console.log( "Here's a string",
-             3.14,
-             {"alpha": 5, "bravo": false},
-             document.getElementById('charlie'),
-             new Date()
-           );
+console.log(
+    "Here's a string",
+     3.14,
+     {"alpha": 5, "bravo": false},
+     document.getElementById('charlie'),
+     new Date()
+);
 ````
 
 Results in:
@@ -71,3 +86,7 @@ Using the `detailPrint` companion plugin, special objects are presented in a mor
 ## Documentation
 
 [patik.com/blog/complete-cross-browser-console-log](http://patik.com/blog/complete-cross-browser-console-log)
+
+## License
+
+Console.log-wrapper is [released under three licenses](LICENSE): MIT, BSD, and GPL.
