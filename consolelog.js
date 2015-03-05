@@ -87,16 +87,37 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
              * Thanks to drzaus http://stackoverflow.com/a/14841411/348995
              */
             getLineFromStack = function _getLineFromStack(stack) {
-                var suffix = stack.split('\n')[2];
+                var suffix = stack.split('\n').pop(),
+                    path = document.location.pathname.substr(0, document.location.pathname.lastIndexOf('/') + 1);
 
-                if (suffix.indexOf(' (') >= 0) {
-                    suffix = suffix.split(' (')[1].substring(0, suffix.length - 1);
+                // Remove the current document path to get a relative path, if applicable
+                // We do this check (instead of calling `.replace()` directly) so we only remove the protocol if the path was also removed
+                if (suffix.indexOf(path) > -1) {
+                    suffix = suffix
+                                .replace(path, '')
+                                .replace(document.location.protocol + '//', '');
+                }
+
+                // Format: `/path/to/file.js:12:34`
+                // Chrome and Safari
+                if (/[^\(\@]+\:\d+\:\d+\)?$/.test(suffix)) {
+                    suffix = '@' + /([^\(\@]+\:\d+\:\d+)\)?$/.exec(suffix)[1];
                 }
                 else {
-                    suffix = suffix.split('at ')[1];
-                }
+                    // Format similar to `(at /path/to/file.js:12:34)`
+                    if (suffix.indexOf(' (') > -1) {
+                        suffix = suffix.split(' (')[1].substring(0, suffix.length - 1);
+                    }
+                    else if (suffix.indexOf('at ') > -1) {
+                        suffix = suffix.split('at ')[1];
+                    }
+                    // Fallback to looking for just `file.js:12:34` (only gets the file name, not the path)
+                    else if (/([^\/]+\:\d+\:\d+)/.test(suffix)) {
+                        suffix = /([^\/]+\:\d+\:\d+)/.exec(suffix)[1];
+                    }
 
-                suffix = '@' + suffix.substr(suffix.lastIndexOf('/') + 1);
+                    suffix = '@' + suffix.substring(suffix.lastIndexOf('/') + 1);
+                }
 
                 return suffix;
             },

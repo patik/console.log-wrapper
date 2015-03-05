@@ -1,7 +1,7 @@
 {
     "name": "consolelog",
     "description": "Cross-Browser console.log() Wrapper",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "main": "consolelog",
     "author": "Craig Patik <craig@patik.com> (http://patik.com)",
     "devDependencies": {
