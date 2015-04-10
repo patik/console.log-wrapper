@@ -92,4 +92,4 @@ Using the `detailPrint` companion plugin, special objects are presented in a mor
 
 ## License
 
-Console.log-wrapper is [released under three licenses](LICENSE): MIT, BSD, and GPL.
+Console.log-wrapper is released under [the ISC license](LICENSE).
