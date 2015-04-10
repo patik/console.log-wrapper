@@ -16,18 +16,18 @@ if (Function.prototype.bind && /^object$|^function$/.test(typeof console) && typ
 }
 
 // AMD support
-(function (name, definition) {
+(function (root, name, factory) {
     if (typeof module !== 'undefined') {
-        module.exports = definition();
+        module.exports = factory();
     }
     else if (typeof define === "function" && define.amd) {
-        define(definition);
+        define([], factory);
     }
     // Fall back to a global variable
     else {
-        window[name] = definition();
+        root[name] = factory();
     }
-}('log',
+}(this, 'log',
 
     /**
      * Complete cross-browser console.log wrapper

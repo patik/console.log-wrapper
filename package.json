@@ -29,7 +29,7 @@
         "type": "git",
         "url": "http://github.com/patik/console.log-wrapper.git"
     },
-    "license": "MIT",
+    "license": "ISC",
     "bugs": {
         "url": "https://github.com/patik/console.log-wrapper/issues"
     },
